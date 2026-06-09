@@ -4,4 +4,27 @@ export interface EnrollmentRecord {
     readonly courseCode: string;
     enrolledAt: Temporal.Instant;
 }
+export type EnrollmentStatus = {
+    status: "PENDING";
+    requestedAt: Temporal.Instant;
+    studentId: string;
+    courseId: string;
+} | {
+    status: "APPROVED";
+    approvedBy: string;
+    approvedAt: Temporal.Instant;
+} | {
+    status: "ACTIVE";
+    startDate: Temporal.PlainDate;
+    currentGrade?: number;
+} | {
+    status: "COMPLETED";
+    finalGrade: number;
+    completedAt: Temporal.Instant;
+} | {
+    status: "DROPPED";
+    reason: string;
+    droppedAt: Temporal.Instant;
+};
+export declare function describeEnrollment(enrollment: EnrollmentStatus): string;
 //# sourceMappingURL=enrollment.model.d.ts.map
